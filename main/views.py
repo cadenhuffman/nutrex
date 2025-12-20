@@ -63,7 +63,9 @@ def add_cluster(request, workout_id):
         form = ClusterForm()
 
 
-    return render(request ,"main/add_exercises.html", {"form":form})
+    return render(request ,"main/add_exercises.html", {
+        "form":form,
+        "clusters": Cluster.objects.filter(workout = Workout.objects.get(id = workout_id))})
 
     
 

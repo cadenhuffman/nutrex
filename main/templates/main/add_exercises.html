@@ -11,6 +11,11 @@
     
 </form>
 
+{% for cluster in clusters %}
+
+    {{cluster}}
+
+{% endfor %}
 
 <a href = "{% url 'index' %}">Finish</a>
 
