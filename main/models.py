@@ -38,3 +38,12 @@ class Cluster(models.Model):
         return f"{self.exercise} at {self.weight} for {self.reps} x {self.sets}"
 
 
+class Food(models.Model):
+    carbs = models.IntegerField()
+    fat = models.IntegerField()
+    protien = models.IntegerField()
+    calories = models.IntegerField()
+
+
+
+
