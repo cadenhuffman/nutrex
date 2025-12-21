@@ -7,5 +7,7 @@ from . import views
 urlpatterns = [
     path("", views.index, name = "index"),
     path("add_workout", views.add_workout, name = "add_workout"),
-    path("<int:workout_id>/add_exercise", views.add_cluster, name = "add_cluster")
+    path("<int:workout_id>/add_cluster", views.add_cluster, name = "add_cluster"),
+    path("add_exercise", views.add_exercise, name = "add_exercise"),
+    path("register", views.register, name = "register")
 ]

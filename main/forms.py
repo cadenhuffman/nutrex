@@ -1,6 +1,6 @@
 from django.forms import ModelForm
-from .models import Workout, Cluster
-
+from .models import Workout, Cluster, Exercise
+from django.contrib.auth.models import User
 
 
 class WorkoutForm(ModelForm):
@@ -19,4 +19,15 @@ class ClusterForm(ModelForm):
         
         
 
+class ExerciseForm(ModelForm):
 
+    class Meta:
+        model = Exercise
+        fields = ["name", "primary_muscle"]
+
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ["username", "password", "email"]

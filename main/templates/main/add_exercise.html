@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+
+<form action = "{% url 'add_exercise' %}" method = "post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value = "Add Exercise">
+
+
+
+</form>
+
+
+
+{% endblock %}

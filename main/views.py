@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
 
 from .forms import *
 from .models import *
@@ -38,11 +39,7 @@ def add_workout(request):
 
 def add_cluster(request, workout_id):
     if request.method == "POST":
-
         form = ClusterForm(request.POST)
-
-
-
         if form.is_valid():
             reps = form.cleaned_data["reps"]
             sets = form.cleaned_data["sets"]
@@ -57,20 +54,41 @@ def add_cluster(request, workout_id):
             # user hits the Back button.
             return HttpResponseRedirect(reverse('add_cluster', args = (workout_id,)))
 
-
-
     else:
         form = ClusterForm()
-
-
-    return render(request ,"main/add_exercises.html", {
+    return render(request ,"main/add_clusters.html", {
         "form":form,
         "clusters": Cluster.objects.filter(workout = Workout.objects.get(id = workout_id))})
 
     
+def add_exercise(request):
+    if request.method == "POST":
+        return False
 
+    else:
+        form = ExerciseForm()
 
+    return render(request, "main/add_exercise.html",{
+        "form": form,
+    })
             
+
+
+def register(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            email = form.cleaned_data["email"]
+
+            user = User.objects.create_user(username,email,password)
+    else:
+        form = UserForm()
+
+    return render(request, "registration/add_user.html",{
+        "form": form,
+    })
 
 
     
